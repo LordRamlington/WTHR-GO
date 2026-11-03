@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+/* Leaflet dark mode & custom styling */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #090d16 !important;
+  font-family: inherit;
+}
+
+/* 100% Free OpenStreetMap Dark Mode Filter (Zero API Key Required) */
+.osm-dark-tiles img.leaflet-tile {
+  filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.2) brightness(0.75);
+}
+
+.osm-clean-dark img.leaflet-tile {
+  filter: invert(100%) hue-rotate(180deg) brightness(80%) contrast(110%);
+}
+
+.leaflet-control-attribution {
+  background: rgba(9, 13, 22, 0.8) !important;
+  color: #64748b !important;
+  font-size: 9px !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(51, 65, 85, 0.4);
+}
+
+.leaflet-control-attribution a {
+  color: #38bdf8 !important;
+}
+
+.custom-weather-pin {
+  background: transparent;
+  border: none;
+}
+
+/* Touch & Android optimizations */
+html, body {
+  overscroll-behavior-y: contain;
+  -webkit-tap-highlight-color: transparent;
+}

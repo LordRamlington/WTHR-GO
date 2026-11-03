@@ -1,0 +1,6 @@
+{
+  "name": "AuraCast - Android Weather Tracker",
+  "description": "Lightweight, real-time Android weather app featuring live interactive radar maps, severe climate push alerts, 5-day forecasts, offline caching, and battery saver mode.",
+  "requestFramePermissions": ["geolocation", "notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
