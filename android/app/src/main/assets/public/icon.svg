@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+    <linearGradient id="sun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+    <linearGradient id="cloud" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+    <linearGradient id="bolt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded squircle background for Android safe zone -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  
+  <!-- Outer subtle radar pulse ring -->
+  <circle cx="256" cy="256" r="180" stroke="#38bdf8" stroke-width="4" stroke-opacity="0.25" stroke-dasharray="12 12" />
+  <circle cx="256" cy="256" r="130" stroke="#38bdf8" stroke-width="3" stroke-opacity="0.4" />
+  
+  <!-- Sun behind cloud -->
+  <circle cx="205" cy="190" r="58" fill="url(#sun)" />
+  
+  <!-- Stylized Cloud -->
+  <path d="M190 350 H340 C378.66 350 410 318.66 410 280 C410 245.5 385 216.8 352 211 C346 166 308 132 262 132 C223 132 189 157 176 193 C145 197 120 223 120 255 C120 293.66 151.34 325 190 325 Z" fill="url(#cloud)" filter="drop-shadow(0px 12px 24px rgba(0,0,0,0.3))" />
+
+  <!-- Lightning / Radar bolt accent -->
+  <path d="M260 290 L230 360 H275 L245 420 L315 340 H270 Z" fill="url(#bolt)" />
+</svg>
