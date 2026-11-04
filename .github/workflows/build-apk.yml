@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - master
+    tags:
+      - 'v*'
   workflow_dispatch:
   release:
     types:
@@ -66,6 +68,7 @@ jobs:
           cd ..
           cp android/app/build/outputs/apk/debug/app-debug.apk ./WTHR-GO-debug.apk
 
+      # Upload APK to Workflow Run Artifacts (Accessible in Actions tab)
       - name: Upload APK as Workflow Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -73,10 +76,32 @@ jobs:
           path: ./WTHR-GO-debug.apk
           retention-days: 30
 
-      - name: Attach APK to GitHub Release (If Release Event)
-        if: github.event_name == 'release'
+      # Automatically publish and save the APK under GitHub Releases section
+      - name: Publish APK to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || format('v1.0.{0}', github.run_number) }}
+          name: "WTHR-GO v1.0.${{ github.run_number }}"
+          body: |
+            ## 📱 WTHR-GO Android APK (Build #${{ github.run_number }})
+
+            ### Direct Download
+            👉 **[WTHR-GO-debug.apk](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_type == 'tag' && github.ref_name || format('v1.0.{0}', github.run_number) }}/WTHR-GO-debug.apk)**
+
+            ### Features
+            - ⚡ **Live Doppler Radar**: OpenStreetMap & RainViewer tiles with past/nowcast loop.
+            - 🔔 **Severe Weather Alerts**: Web push notifications, haptic vibration, and alert sounds.
+            - 📅 **5-Day & Hourly Forecast**: High-resolution Open-Meteo numerical predictions.
+            - 🔋 **Eco Battery Saver & Offline Mode**: Caching for zero-network use.
+            - 🏷️ **AdMob Banner Unit**: Integrated standard 320x50 smart banner.
+
+            ### Installation on Android
+            1. Tap the **WTHR-GO-debug.apk** link above to download.
+            2. Open the APK from your notification bar or Downloads folder.
+            3. Tap **Install** (allow "Install Unknown Apps" for your browser if prompted).
           files: ./WTHR-GO-debug.apk
+          make_latest: true
+          draft: false
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
