@@ -30,9 +30,12 @@ interface RainViewerFrame {
 
 type BasemapStyle = 'dark' | 'streets' | 'satellite';
 
-// RainViewer radar tiles exist up to zoom 12. Capping at 11 prevents any "Zoom Level Not Support" tile errors.
+// RainViewer free public tier caps tiles at zoom level 7.
+// Setting maxNativeZoom to 7 forces Leaflet to upscale level-7 tiles for higher zoom levels (up to 14),
+// completely preventing RainViewer from serving the "Zoom Level Not Supported" placeholder image.
 const MIN_ZOOM = 3;
-const MAX_ZOOM = 11;
+const MAX_ZOOM = 14;
+const RADAR_MAX_NATIVE_ZOOM = 7;
 
 export const InteractiveWeatherMap: React.FC<InteractiveWeatherMapProps> = ({
   location,
@@ -233,7 +236,8 @@ export const InteractiveWeatherMap: React.FC<InteractiveWeatherMapProps> = ({
       zIndex: 20,
       minZoom: MIN_ZOOM,
       maxZoom: MAX_ZOOM,
-      maxNativeZoom: 11,
+      maxNativeZoom: RADAR_MAX_NATIVE_ZOOM,
+      tileSize: 256,
     });
     newLayer.addTo(map);
     radarLayerRef.current = newLayer;
